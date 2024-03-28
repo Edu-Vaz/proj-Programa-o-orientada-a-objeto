@@ -2,7 +2,7 @@
 
 # NOMES DOS ALUNOS (máximo 4 por grupo):
 # Aluno 1: Eduardo Henrique Dos Santos Vaz 
-# Aluno 2: Giovana 
+# Aluno 2: Giovana Ribeiro Lombardi
 # Aluno 3: Leonardo 
 # Aluno 4: Vitorio 
 
@@ -16,7 +16,8 @@ class ContaBancaria:
         self.__saldo += valor
 
     def sacar(self, valor):
-        self.__saldo -= valor
+        self.__saldo -= valor 
+        self.__saldo -= valor * 0.25
 
     def transferir(self, valor, conta_destino, conta_origem):
         self.sacar(valor)
@@ -29,7 +30,10 @@ class ContaBancaria:
 
     def get_saldo(self):
         return self.__saldo
-
+        
+    def get_cmpf(self):
+        return self.__cpmf    
+    
     def exibir_info(self):
         return f"Conta de {self.__correntista} - Saldo de R$ {self.__saldo:.2f}"
 
@@ -56,13 +60,23 @@ def interacao_sacar(contas):
 
 
 def interacao_depositar(contas):
-    # instruções do método a ser desenvolvido
+    cliente_valido = False
+    while not cliente_valido:
+        mostrar_info(contas)
+        indice_conta = int(input(f"O deposito será efetuado na conta de qual cliente? (0 a {len(contas) - 1}): "))
+        if indice_conta >= 0 and indice_conta < len(contas):
+            cliente_valido = True
+        else:
+            print("Índice de cliente inválido!")
+
+    deposito = float(input("Qual o valor do deposito? "))
+    contas[indice_conta].depositar(deposito)
+    print("Deposito finalizado.")
 
     pass
 
 
 def interacao_transferir(contas):
-    
     cliente_valido=False
     while not cliente_valido:
         mostrar_info(contas)
