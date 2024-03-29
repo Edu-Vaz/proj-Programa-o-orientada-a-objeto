@@ -11,13 +11,13 @@ class ContaBancaria:
     def __init__(self, correntista, saldo):
         self.__correntista = correntista
         self.__saldo = saldo
+        self.__cpmf = 0
 
     def depositar(self, valor):
         self.__saldo += valor
 
     def sacar(self, valor):
-        self.__saldo -= valor 
-        self.__saldo -= valor * 0.25
+        self.__saldo -= valor + (valor * 0.25)
 
     def transferir(self, valor, conta_destino, conta_origem):
         self.sacar(valor)
@@ -132,6 +132,12 @@ while True:
             interacao_depositar(contas)
         case 4:
             interacao_transferir(contas)
+        case 5:
+            print("Fim do programa!")
+            break
+        case _:
+            print("Opção inválida!")
+    print()
         case 5:
             print("Fim do programa!")
             break
