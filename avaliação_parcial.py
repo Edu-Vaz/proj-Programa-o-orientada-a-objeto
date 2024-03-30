@@ -56,9 +56,19 @@ def interacao_sacar(contas):
 
 
 def interacao_depositar(contas):
-    # instruções do método a ser desenvolvido
-
-    pass
+    mostrar_info(contas)
+    indice_conta = input(f"O depósito será efetuado na conta de qual cliente? (0 a {len(contas) - 1}): ")
+    deposito = input("Qual o valor do depósito? ")
+    try:
+        indice_conta = int(indice_conta)
+        deposito = float(deposito)
+        if 0 <= indice_conta < len(contas):
+            contas[indice_conta].depositar(deposito)
+            print("Depósito finalizado.")
+        else:
+            print("Índice de conta inválido!")
+    except ValueError:
+        print("Por favor, insira um número válido para o índice da conta e para o valor do depósito.")
 
 
 def interacao_transferir(contas):
